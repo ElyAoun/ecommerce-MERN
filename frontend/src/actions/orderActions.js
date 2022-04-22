@@ -85,14 +85,15 @@ export const payOrder = (orderId) => async (dispatch, getState) => {
       type: ORDER_PAY_REQUEST,
     })
 
-    const { userLogin: { userInfo } } = getState()
-    //console.log('token is: ', userInfo.token)
+    const {
+      userLogin: { userInfo },
+    } = getState()
 
     const config = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfo.token}`
-      }
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     }
 
     const { data } = await axios.put(
@@ -188,7 +189,7 @@ export const listOrders = () => async (dispatch, getState) => {
   }
 }
 
-export const deliverOrder = (order) => async (dispatch, getState) => {
+export const deliverOrder = (orderId) => async (dispatch, getState) => {
   try {
     dispatch({
       type: ORDER_DELIVER_REQUEST,
@@ -204,7 +205,7 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.put(
-      `/api/orders/${order._id}/deliver`,
+      `/api/orders/${orderId}/deliver`,
       config
     )
 
