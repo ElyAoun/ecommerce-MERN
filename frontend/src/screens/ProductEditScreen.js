@@ -55,7 +55,7 @@ const ProductEditScreen = ({ match, history }) => {
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0]
     const formData = new FormData()
-    formData.append('image', file)
+    formData.append('image', file) //use same name as middleware in backend
     setUploading(true)
 
     try {
@@ -67,7 +67,7 @@ const ProductEditScreen = ({ match, history }) => {
 
       const { data } = await axios.post('/api/upload', formData, config)
 
-      setImage(data)
+      setImage(data) //path to image
       setUploading(false)
     } catch (error) {
       console.error(error)
