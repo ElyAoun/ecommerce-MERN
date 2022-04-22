@@ -4,6 +4,7 @@ import Product from '../components/Product'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
 import Paginate from '../components/Paginate'
+import ProductCarousel from '../components/ProductCarousel'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions.js'
 
@@ -25,6 +26,7 @@ const HomeScreen = ({match}) => {
 
     return (
         <>
+            {!keyword && <ProductCarousel />}
             <h1>Latest products</h1>
             { loading ? (<Loader/>) : error ? (<Message variant='danger' >{error}</Message>) : (
                 <>
