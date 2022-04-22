@@ -6,12 +6,14 @@ import Loader from '../components/Loader.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions.js'
 
-const HomeScreen = () => {
+const HomeScreen = ({match}) => {
+    const keyword = match.params.keyword
+
     const dispatch = useDispatch()
 
     useEffect(()=>{ //runs as soon as the component loads
-        dispatch(listProducts())
-    }, [dispatch]) 
+        dispatch(listProducts(keyword))
+    }, [dispatch, keyword]) 
     
     //use same name as the store
     const productList = useSelector((state) => state.productList)
